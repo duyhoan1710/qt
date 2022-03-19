@@ -1,5 +1,6 @@
 #include "dialogsetting.h"
 #include "ui_dialogsetting.h"
+#include <mainwindow.h>
 
 #include "QDebug"
 
@@ -8,7 +9,8 @@ DialogSetting::DialogSetting(QWidget *parent) :
     ui(new Ui::DialogSetting)
 {
     ui->setupUi(this);
-    loadValue();
+    connect(ui->btnSaveSetting, SIGNAL(clicked()), this, SLOT(on_btnSaveSetting_clicked()));
+
 }
 
 DialogSetting::~DialogSetting()
@@ -16,17 +18,13 @@ DialogSetting::~DialogSetting()
     delete ui;
 }
 
-QString DialogSetting::getOpenType(){
-    return m_openType;
-}
-
-void DialogSetting::setOpenType(const QString &openType) {
-    m_openType = openType;
-}
-
-void DialogSetting::loadValue()
+void DialogSetting::loadValue(const QString& value)
 {
-    ui->radio_auto->setChecked(true);
+    if (value == "auto") {
+        ui->radio_auto->setChecked(true);
+    } else if (value == "manual") {
+        ui->radio_manual->setChecked(true);
+    }
 }
 
 void DialogSetting::on_exitBtn_clicked()
@@ -34,14 +32,17 @@ void DialogSetting::on_exitBtn_clicked()
     hide();
 }
 
-void DialogSetting::on_pushButton_2_clicked()
+void DialogSetting::on_btnSaveSetting_clicked()
 {
+    QString value;
+
     if (ui->radio_auto->isChecked()) {
-        qInfo() << "auto";
-    } else {
-        qInfo() << "manual";
-        m_openType = "manual";
+        value = "auto";
+    } else if (ui->radio_manual->isChecked()) {
+        value = "manual";
     }
 
-    qInfo() << m_openType;
+    emit on_changeOpenType(value);
+    hide();
 }
+

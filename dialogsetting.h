@@ -11,24 +11,20 @@ class DialogSetting : public QDialog
 {
     Q_OBJECT
 
-    QString m_openType;
-
 public:
     explicit DialogSetting(QWidget *parent = nullptr);
     ~DialogSetting();
 
-    QString getOpenType();
-    void setOpenType(const QString &openType);
-
 private slots:
-
     void on_exitBtn_clicked();
+    void on_btnSaveSetting_clicked();
+    void loadValue(const QString&);
 
-    void on_pushButton_2_clicked();
+signals:
+    void on_changeOpenType(const QString&);
 
 private:
     Ui::DialogSetting *ui;
-    void loadValue();
 };
 
 #endif // DIALOGSETTING_H

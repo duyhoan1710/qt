@@ -211,7 +211,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>open door 2</string>
+     <string>Mở cửa 2</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_door_1">
@@ -224,7 +224,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>open door 1</string>
+     <string>Mở cửa 1</string>
     </property>
    </widget>
    <widget class="QFrame" name="door1_1">
@@ -300,7 +300,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>setting</string>
+     <string>Cài đặt</string>
     </property>
    </widget>
   </widget>

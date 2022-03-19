@@ -55,17 +55,17 @@
        <string notr="true">color=rgb(204, 0, 0)</string>
       </property>
       <property name="text">
-       <string>cancel</string>
+       <string>Đóng</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="btnSaveSetting">
       <property name="styleSheet">
        <string notr="true">color=rgb(78, 154, 6)</string>
       </property>
       <property name="text">
-       <string>save</string>
+       <string>Lưu</string>
       </property>
      </widget>
     </item>

@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui websockets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -20,12 +20,14 @@ SOURCES += \
     dialogsetting.cpp \
     main.cpp \
     mainwindow.cpp \
+    myserver.cpp \
     user.cpp
 
 HEADERS += \
     dialogcheckuser.h \
     dialogsetting.h \
     mainwindow.h \
+    myserver.h \
     user.h
 
 FORMS += \

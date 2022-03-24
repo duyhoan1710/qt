@@ -16,6 +16,8 @@ QT_END_NAMESPACE
 
 typedef QMap<QString,QString> userList;
 
+class WebServer;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -38,10 +40,14 @@ private slots:
 
      void openDoor(const QString&);
      void closeDoor();
+     void receiveData(const QString&);
+
 
 signals:
     void on_loadDefaultOpenType (const QString&);
     void on_setUser(const QString&, const QString&);
+
+
 
 private:
     Ui::MainWindow *ui;
@@ -50,5 +56,6 @@ private:
     void loadStyle();
     void toggleDoor1();
     void toggleDoor2();
+    WebServer *server;
 };
 #endif // MAINWINDOW_H

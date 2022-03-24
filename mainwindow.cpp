@@ -8,11 +8,12 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <myserver.h>
 
 typedef QMap<QString, QString> userList;
 
-QString pathFileOpenErrorDoor1 = "/home/parallels/test/openDoor1Error.txt";
-QString pathFileOpenErrorDoor2 = "/home/parallels/test/openDoor2Error.txt";
+QString pathFileOpenErrorDoor1 = "/home/hoannguyen/Desktop/qt/openDoor1Error.txt";
+QString pathFileOpenErrorDoor2 = "/home/hoannguyen/Desktop/qt/openDoor2Error.txt";
 
 QString getRandomString()
 {
@@ -75,11 +76,20 @@ MainWindow::MainWindow(QWidget *parent)
     users = getUsers();
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(closeDoor()));
+
+    server = new WebServer(this);
+    server->listen(QHostAddress::Any, 8080);
+
+    connect(server, SIGNAL(on_receiveData(const QString&)), this, SLOT(receiveData(const QString&)));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::receiveData(const QString& value) {
+    qInfo() << value;
 }
 
 void MainWindow::loadStyle()
@@ -275,7 +285,6 @@ void MainWindow::on_btn_door_1_clicked()
     }
 
     if (ui->btn_door_1->text() == "Mở cửa 1") {
-        qInfo() << "aaaaa";
         writeFileOpenError(pathFileOpenErrorDoor1, "", "");
     }
 

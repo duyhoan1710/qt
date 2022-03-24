@@ -47,8 +47,6 @@ signals:
     void on_loadDefaultOpenType (const QString&);
     void on_setUser(const QString&, const QString&);
 
-
-
 private:
     Ui::MainWindow *ui;
     DialogSetting *dialogSetting;
@@ -57,5 +55,8 @@ private:
     void toggleDoor1();
     void toggleDoor2();
     WebServer *server;
+    void scanDoor1(const QString&);
+    void scanDoor2(const QString&);
+    void notFoundUser(const QString&);
 };
 #endif // MAINWINDOW_H

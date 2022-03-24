@@ -262,7 +262,7 @@ void MainWindow::notFoundUser(const QString& filePath) {
             QString noti = "Thông báo ";
             QString text = "Có người đang mở cửa với thẻ không hợp lệ";
 
-            QMessageBox::warning(this, noti, text.append("(").append(doorOpen).append(")"));
+            QMessageBox::warning(this, noti.append("(").append(doorOpen).append(")"), text);
         }
     } else {
         writeFileOpenError(filePath, formattedTime, "1");
@@ -274,8 +274,6 @@ void MainWindow::receiveData(const QString& value) {
     QString code = value.right(12);
 
     qInfo() << value;
-
-    QString userName = findUser(code, users);
 
     if (door != "door_1" && door != "door_2") {
         return;
@@ -296,8 +294,6 @@ void MainWindow::on_btn_door_1_clicked()
 
 void MainWindow::scanDoor1(const QString& code) {
     doorOpen = "door_1";
-
-    QString userName = findUser(code, users);
 
     if (userName == nullptr) {
         notFoundUser(pathFileOpenErrorDoor1);

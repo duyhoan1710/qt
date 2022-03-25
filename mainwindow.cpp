@@ -262,7 +262,7 @@ void MainWindow::notFoundUser(const QString& filePath) {
             QString noti = "Thông báo ";
             QString text = "Có người đang mở cửa với thẻ không hợp lệ";
 
-            QMessageBox::warning(this, noti, text.append("(").append(doorOpen).append(")"));
+            QMessageBox::warning(this, noti, text.append(" (").append(doorOpen).append(")"));
         }
     } else {
         writeFileOpenError(filePath, formattedTime, "1");
@@ -313,6 +313,8 @@ void MainWindow::scanDoor1(const QString& code) {
         dialogCheckUser->show();
         return;
     }
+
+    openDoor(doorOpen);
 }
 
 void MainWindow::scanDoor2(const QString& code) {
@@ -333,6 +335,8 @@ void MainWindow::scanDoor2(const QString& code) {
         dialogCheckUser->show();
         return;
     }
+
+    openDoor(doorOpen);
 }
 
 void MainWindow::on_btn_door_2_clicked()
